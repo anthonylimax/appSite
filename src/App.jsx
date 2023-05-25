@@ -1,10 +1,17 @@
-import "./  app.css"
-import { Header } from './components/styles'
+import "./app.css"
+import Head from "./components/header"
+import Main from "./components/MainScreen"
+import Promo from "./components/Promos"
+import SectionPC from "./components/SectionPC"
+
 function App() {
 
   return (
     <>
-      <Header />
+      <Head></Head>
+      <Main></Main>
+      <Promo></Promo>
+      <SectionPC></SectionPC>
     </>
   )
 }

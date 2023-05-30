@@ -1,18 +1,22 @@
-import "./app.css"
-import Head from "./components/header"
-import Main from "./components/MainScreen"
-import Promo from "./components/Promos"
-import SectionPC from "./components/SectionPC"
-
+import Home from "./pages/HomePage"
+import { AccountContext } from "../context/AccountContext"
+import AccountProvider from "../context/AccountContext"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 function App() {
-
+  const routes = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />,
+    }, 
+    {
+     path: '/notebook',
+     element: <div></div>,
+    }
+  ])
   return (
-    <>
-      <Head></Head>
-      <Main></Main>
-      <Promo></Promo>
-      <SectionPC></SectionPC>
-    </>
+    <AccountProvider value={{}}>
+      <RouterProvider  router={routes}/>
+    </AccountProvider>
   )
 }
 

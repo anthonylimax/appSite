@@ -18,7 +18,7 @@ function Main(){
                     <span>Computers</span>
                 </IconScop>
                 <IconScop>
-                    <Icon src={three} size="66" secondSize="66x" alt="" />
+                    <Icon src={three} size="66" secondSize="66" alt="" />
                     <span>Monitors</span> 
                 </IconScop>
                 <IconScop>
@@ -26,7 +26,7 @@ function Main(){
                     <span>Games</span>
                 </IconScop>          
             </List>
-            <img src={logo} alt="" />
+            <img src={logo} className="logo" alt="" />
         </MainScreen>
     )
 }

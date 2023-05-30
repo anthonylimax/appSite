@@ -3,9 +3,9 @@ import imgProcess from "./../../assets/pictures/image 11.png"
 function SectionPC() {
 
     return (
-        <>
+        <section className="wrapper">
 
-            <section className="section">
+            <section className="section" id="pc">
 
                 <img className="imgPC" src={imgPC} alt="" />
                 <div className="Texts">
@@ -16,7 +16,7 @@ function SectionPC() {
                     <span><strong> O QUE A MAIOR PARTE DOS COMPUTADORES NÃO SUPORTA.</strong></span>
                 </div>
             </section>
-            <section className="section Process">
+            <section className="section" id="process">
                 <div className="Texts">
                     <h2 className="process">Processador Intel Core i9-13900K</h2>
                     <span>
@@ -26,9 +26,9 @@ function SectionPC() {
                         Que pode te  proporcionar maior velocidade de processamento de dados possível, perfeito para quem joga jogos pesados de mundo aberto que exigem o melhor do seu processador.
                     </span>
                 </div>
-                <img src={imgProcess} alt="" />
+                <img src={imgProcess} className="imgPC" alt="" />
             </section>
-        </>
+        </section>
     )
 }
 

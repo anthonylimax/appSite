@@ -2,7 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import mysql from 'mysql2';
 
-const server = express();
+
+const server = express();0
+let response = {};
 server.use(cors());
 server.use(express.json())
 const db = mysql.createConnection({
@@ -12,11 +14,18 @@ const db = mysql.createConnection({
     database: "approque"
 });
 
+server.post('/getData', ({body}, res)=>{
+   console.log(body) 
+})
 server.post('/connect', ({body}, res)=>{
-    db.query("SELECT * FROM PERFIL", async (err, result, field)=>{
-        const resultado = await result.filter(element => element.email === body.emailClient)
-        console.log(resultado)    
-        res.send(resultado != [] ? body : new Error("Email ou senha incorretos"))
+    db.query("select * from perfil", (err, resQuery, field)=>{
+        response = resQuery.find(profile => profile.email == body.emailClient && profile.pass == body.passwordClient)
+    db.query(`select c.numberOfItens, i.nomeItem, i.price from perfil as p join carrinho as c on p.id_carrinho = ${response.id_Carrinho} join items as i on c.id_item = i.id`, (error, resp, field)=>{
+        response =  {...response, carrinho: resp}
+        console.log(response)
+        
+        res.json(response)
+   })
     })
 })
 

@@ -6,9 +6,15 @@ import profile from '../../assets/pictures/profile.png'
 import cart from '../../assets/pictures/carrinho.png'
 import { Header, Input, Lupa, ListItems, LoginLabel, LoginInput, InputSection } from '../styles'
 import { useContext, useState } from 'react'
+import axios from "axios";
 import { AccountContext} from '../../../context/AccountContext'
-import { LoginIsCorrectly } from '../../QUERYS'
+import { Link } from 'react-router-dom'
+import { connection as j} from '../../QUERYS'
 function Head() {
+  const connection = axios.create(j)
+
+  const {setAccountLogged, accountLogged} = useContext(AccountContext)
+  const [error, setError] = useState(false);
   const [popUp, setPopUp] = useState(false);
   const [focus, setFocus] = useState('')
   const [clicked, setClicked] = useState('')
@@ -22,9 +28,20 @@ function Head() {
           <Lupa src={lupa}/>
           <Input type="text" placeholder="SEARCH" />
         </div>
-        <ListItems>
-          <img src={profile} onClick={()=>setPopUp(!popUp)}/>
-          <img src={cart}/>
+        <ListItems><div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10
+        }}>
+          
+            <img src={profile} onClick={() => {
+              accountLogged.email != null ? null : setPopUp(true)
+            }}/>
+            <label htmlFor="">{accountLogged.nome}</label>
+        </div>
+        <Link to="/carrinho">
+          <img src={cart} />
+        </Link>
         </ListItems>
       </Header>
         {
@@ -35,6 +52,7 @@ function Head() {
           <InputSection left={45}>
               <span className={`${focusTwo}`}>email:</span>
               <LoginInput onChange={({target})=>{
+                setError(false);
                 setForm({...form, emailClient: target.value})
               }} onBlur={(e)=>{
                 if(e.target.value == ""){
@@ -49,15 +67,33 @@ function Head() {
                   setFocus("");
                 }
               }} type="password" onChange={({target})=>{
+                setError(false);
+                console.log(form)
                 setForm({...form, passwordClient: target.value})
               }} onFocus={()=>{setFocus("spanFocus")}}></LoginInput>
+              
           </InputSection>
-          <button onClick={()=>{
-          setClicked(true)
-          if(LoginIsCorrectly(form)){
-            setClicked(false);
-          }
+          <button onClick={async ()=>{
+            
+            setClicked(true)
+          setTimeout(()=>{
+            connection.post('/connect', form).then(response =>{
+                  if(response.data != ""){
+                    setClicked(false)
+                    setPopUp(false)
+                    setAccountLogged(response.data)
+                    console.log(response.data)
+                  }
+                  else{
+                    setClicked(false)
+                    setError(true);
+                  }
+                })
+          }, 2000)
           }}>Entrar</button>
+          {
+            error ? (<label>incorrect pass or email, verify another time</label>) : null 
+          }
         </LoginLabel> : <LoginLabel><img className='anim' width={60} src='https://cdn-icons-png.flaticon.com/512/190/190420.png'></img></LoginLabel>}
         </div> : null}
     </>

@@ -10,7 +10,7 @@ import axios from "axios";
 import { AccountContext} from '../../../context/AccountContext'
 import { Link } from 'react-router-dom'
 import { connection as j} from '../../QUERYS'
-function Head() {
+function Head({color}) {
   const connection = axios.create(j)
 
   const {setAccountLogged, accountLogged} = useContext(AccountContext)
@@ -22,8 +22,9 @@ function Head() {
   const [form, setForm] = useState({emailClient: '', passwordClient: ''})
   return (
     <>
-      <Header>
-        <img src={logo} />
+      <Header color={color}>
+
+        <Link to="/"><img src={logo}/></Link>
         <div style={{position: 'relative', marginTop: 20, width: "20vw"}} className='searchBar'>
           <Lupa src={lupa}/>
           <Input type="text" placeholder="SEARCH" />
@@ -49,7 +50,7 @@ function Head() {
             {!clicked ? 
           <LoginLabel>
             <img src={logoGrande} width={300} alt="" />
-          <InputSection left={45}>
+          <InputSection left={45} data-animation="smooth">
               <span className={`${focusTwo}`}>email:</span>
               <LoginInput onChange={({target})=>{
                 setError(false);
@@ -92,7 +93,7 @@ function Head() {
           }, 2000)
           }}>Entrar</button>
           {
-            error ? (<label>incorrect pass or email, verify another time</label>) : null 
+            error ? (<label>incorrect pass or email, check again</label>) : null 
           }
         </LoginLabel> : <LoginLabel><img className='anim' width={60} src='https://cdn-icons-png.flaticon.com/512/190/190420.png'></img></LoginLabel>}
         </div> : null}

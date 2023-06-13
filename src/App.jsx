@@ -3,6 +3,7 @@ import { AccountContext } from "../context/AccountContext"
 import AccountProvider from "../context/AccountContext"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Carrinho from "./pages/carrinhoPage"
+import NotebookPage from "./pages/NotebookPage"
 function App() {
   const routes = createBrowserRouter([
     {
@@ -11,7 +12,7 @@ function App() {
     }, 
     {
      path: '/notebook',
-     element: <div></div>,
+     element: <NotebookPage />,
     },
     {
       path: '/carrinho',

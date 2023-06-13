@@ -1,4 +1,5 @@
 import { MainScreen, Icon, List, IconScop } from "../styles"
+import { Link } from "react-router-dom"
 import logo from '../../assets/pictures/logoGrande.png'
 import joystick from '../../assets/pictures/joystick.png'
 import one from '../../assets/pictures/image 4.png'
@@ -10,8 +11,10 @@ function Main(){
         <MainScreen imgUrl={joystick}>
             <List>
                 <IconScop>
-                    <Icon src={one} size="68" secondSize="71x" alt="" />
-                    <span>Notebooks</span>
+                        <Icon src={one} size="68" secondSize="71x" alt="" />
+                    <Link to='/notebook'>
+                        <span>Notebooks</span>
+                </Link>
                 </IconScop>
                 <IconScop>    
                     <Icon src={two} size="71" secondSize="65" alt="" />

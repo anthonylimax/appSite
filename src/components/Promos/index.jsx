@@ -45,7 +45,7 @@ function Promo() {
                     <Span Red>R$8999,99</Span>
                 </PromoScop>
             </Promos>
-            <ArrowLayer right="0px" transparence={!(left >= -5000)} >
+            <ArrowLayer right="0px" transparence={!(left >= -55)} >
                 <img src={scrollImage} onClick={CountRight} alt="" />
             </ArrowLayer>
         </MainPromo>
@@ -59,7 +59,7 @@ function Promo() {
         }
     }
     function CountRight() {
-        if (left <= 1200) {
+        if (left >= -55) {
             setLeft(left - 75);
         }
     }

@@ -8,7 +8,7 @@ function Home() {
 
   return (
     <>
-      <Head></Head>
+      <Head color="#EBEBEB"></Head>
       <Main></Main>
       <Promo></Promo>
       <SectionPC></SectionPC>

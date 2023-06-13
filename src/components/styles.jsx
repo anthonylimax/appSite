@@ -1,7 +1,8 @@
+
 import styled from "styled-components"
 
 export const Header = styled.div`
-    background-color: #EBEBEB;
+    background-color:${props => props.color}; 
     width: 100%;
     gap: 20vw;
     display: flex;
@@ -12,6 +13,26 @@ export const Header = styled.div`
     align-items: center;
     justify-content:center;
     padding: 0px 50px 0 50px;
+`
+export const ComponentKart = styled.div`
+    display: grid;
+    background-color: gray;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    width: 100%;
+    padding: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+`
+export const Buy = styled.button`
+    width: 200px;
+    outline: none;
+    border: 1px solid transparent;
+    padding: 20px;
+    background-color: #0a7158;
+    align-self: flex-end;
+    :hover{
+        
+    }
 `
 export const Lupa = styled.img`
     position: relative;
@@ -29,12 +50,110 @@ export const Input = styled.input`
     text-align: center;
     border-bottom: 2px solid black;
 `
+export const EachCarrossel = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    span{
+        color: white;
+        text-align: center;
+        width: 800px;
+        font-weight: 700;
+        font-size: 30px;
+    }
+    ::before{
+        content: "";
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        background: url(${props => props.url});
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        }
+`
+export const CarrosselPage = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 100px;
+    
+`
+export const EachArrow = styled.button`
+    z-index: 1;
+    min-height: 37px;
+    min-width: 37px;  
+    right: ${props => props.right};
+    left: ${props => props.left};
+    position: absolute;
+    transform: rotate(${props => props.rotate});
+    background-color: white;
+    -webkit-mask-image: url(${props => props.img});
+    mask-image: url(${props => props.img});
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    transform: rotate(${props => props.reverse ? "180deg" : "0deg"});
+`
 export const ListItems = styled.div`
     display: flex;
     align-items: center;
     gap: 5vw;
     @media (max-width: 900px){
         display: none;
+    }
+`
+export const ImagesRow = styled.div`
+    z-index: -1;
+    left: ${props => props.left};
+    height: 100vh;
+    img{
+        width: 100vw;
+        height: 100%;
+    ::after{
+        content: ${props => props.content};
+        font-size: 20px;
+        width: 10vw;
+        text-align: center;
+        left: 40vw;
+    }
+    }
+    transition: 1s;
+    overflow: hidden;
+    margin-left: ${props => props.left};
+    color: black;   
+    display: flex;
+    z-index:0;
+    left: 0;
+    position: absolute;
+`
+export const SecondCarousel = styled.main`
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: 800px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    span{
+        text-align: center;
+        color: white;
+        font-size: 35px;
+        width: 60vh;
+    }
+    flex-direction: column;
+    ::after{
+        content: ${props => props.content};
+        font-weight: 900;
+        font-size: 30px;
+        width: 25%;
+        z-index: 12;
+        position: absolute;
+        top: 20px;
+        text-align: center;
+        right: 39.5%;
     }
 `
 export const MainScreen = styled.main`  
@@ -62,6 +181,23 @@ export const MainScreen = styled.main`
         background-repeat: no-repeat;
     }
 `
+export const Bolinhas = styled.ul`
+    position: absolute;
+    bottom: 0;
+    li{
+        display: inline-block;
+        width: 15px;
+        height: 7px;
+        border-radius: 10px;
+        margin: 10px;
+    }
+`
+export const Traco = styled.li` 
+    transition: ease-in-out 1s;
+    background-color: ${props => props.isSelected ? props.isSelected : "white"};
+`
+
+
 export const Icon = styled.img`
     aspect-ratio: 4/4;
     width: 3vw;
